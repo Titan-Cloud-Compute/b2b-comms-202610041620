@@ -155,3 +155,45 @@
   --color-on-primary-alpha-70: rgba(255, 255, 255, 0.7);
   --color-on-primary-alpha-85: rgba(255, 255, 255, 0.85);
 }
+
+/* ── Style-token extension (moved from styles.css) ───────────────────────────────────
+ * Declares font-size scale, missing radius/shadow tokens, and --imp-h so that
+ * all component files can reference tokens only (no raw literals).            */
+:root {
+  --imp-h: 0px;
+
+  /* Font-size scale */
+  --font-size-xs: 0.75rem;    /* 12px – smallest labels / tags */
+  --font-size-sm: 0.875rem;   /* 14px – secondary text, buttons */
+  --font-size-md: 0.9375rem;  /* 15px – comfortable body text */
+  --font-size-lg: 1.125rem;   /* 18px – section headings */
+  --font-size-xl: 1.5rem;     /* 24px – page headings */
+  --font-size-2xl: 2rem;      /* 32px – hero headings */
+  --font-size-input: 16px;    /* iOS-zoom-safe input size */
+
+  /* Radius tokens not covered by tokens.css */
+  --radius-xs: 4px;
+  --radius-btn: 8px;
+  --radius-card: 12px;
+
+  /* Shadow tokens not covered by tokens.css */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-popup: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-modal: 0 10px 40px rgba(0, 0, 0, 0.2);
+  --shadow-drawer: -4px 0 24px rgba(0, 0, 0, 0.2);
+  --shadow-nav: 0 1px 3px rgba(14, 23, 38, 0.08);
+  --shadow-header: 0 -1px 3px rgba(14, 23, 38, 0.08);
+  --shadow-sidebar: 1px 0 3px rgba(14, 23, 38, 0.05);
+  --shadow-hover: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-hover-lg: 0 6px 16px rgba(0, 0, 0, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(var(--color-primary-rgb), 0.15);
+
+  /* Radius for circular elements (avatars, spinners) */
+  --radius-circle: 50%;
+
+  /* Shared page primitive tokens */
+  --layout-page-max: 1120px;
+  --form-col-min: 220px;
+  --border-width: 1px;
+  --opacity-disabled: 0.6;
+}
