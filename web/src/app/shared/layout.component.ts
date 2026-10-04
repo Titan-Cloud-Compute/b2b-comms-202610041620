@@ -273,7 +273,7 @@ import { NavItem, FIRM_NAV_ITEMS, ADMIN_NAV_ITEMS, SHARED_NAV_ITEMS, ADMIN_TAB_M
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: var(--color-overlay);
       z-index: 150;
     }
 

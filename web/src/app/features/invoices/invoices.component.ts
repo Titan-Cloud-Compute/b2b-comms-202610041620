@@ -15,20 +15,20 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
   standalone: true,
   imports: [FormsModule],
   template: `
-    <div data-testid="invoices-screen">
-      <h1>Invoices</h1>
+    <div class="page" data-testid="invoices-screen">
+      <h1 class="page-title">Invoices</h1>
 
-      <section>
+      <section class="card">
         <h2>Generate invoice</h2>
         <p data-testid="invoice-generate-caption">the invoice is created and returns 201 with the invoice id available for download</p>
-        <form data-testid="invoice-generate-form" (ngSubmit)="generate()">
+        <form class="form-grid" data-testid="invoice-generate-form" (ngSubmit)="generate()">
           <label>Order ID
             <input name="orderId" type="text" [(ngModel)]="orderId" required />
           </label>
           <label>Amount
             <input name="amount" type="number" step="0.01" min="0" [(ngModel)]="amount" required />
           </label>
-          <button type="submit" data-testid="invoice-generate-submit" [disabled]="generating">Generate invoice</button>
+          <button class="btn btn-primary" type="submit" data-testid="invoice-generate-submit" [disabled]="generating">Generate invoice</button>
         </form>
         @if (generateError) {
           <p data-testid="invoice-generate-error" role="alert">{{ generateError }}</p>
@@ -38,14 +38,14 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
         }
       </section>
 
-      <section>
+      <section class="card">
         <h2>Download invoice</h2>
         <p data-testid="invoice-download-caption">the response returns 200 with a downloadUrl pointing to the stored invoice</p>
-        <form data-testid="invoice-download-form" (ngSubmit)="download()">
+        <form class="form-grid" data-testid="invoice-download-form" (ngSubmit)="download()">
           <label>Invoice ID
             <input name="invoiceId" type="text" [(ngModel)]="invoiceId" required />
           </label>
-          <button type="submit" data-testid="invoice-download-submit" [disabled]="downloading">Get download link</button>
+          <button class="btn btn-primary" type="submit" data-testid="invoice-download-submit" [disabled]="downloading">Get download link</button>
         </form>
         @if (downloadError) {
           <p data-testid="invoice-download-error" role="alert">{{ downloadError }}</p>

@@ -53,17 +53,17 @@ function registerChannelMocks(api: ApiClient): void {
   standalone: true,
   imports: [FormsModule],
   template: `
-    <div data-testid="channels-screen">
-      <h1>Channels</h1>
+    <div class="page" data-testid="channels-screen">
+      <h1 class="page-title">Channels</h1>
 
-      <section>
+      <section class="card">
         <h2>Create a shared channel</h2>
-        <form data-testid="channel-create-form" (ngSubmit)="createChannel()">
+        <form class="form-grid" data-testid="channel-create-form" (ngSubmit)="createChannel()">
           <label>
             Channel name
             <input name="name" type="text" required [(ngModel)]="newName" />
           </label>
-          <button type="submit" [disabled]="busy || !newName.trim()">Create channel</button>
+          <button class="btn btn-primary" type="submit" [disabled]="busy || !newName.trim()">Create channel</button>
         </form>
         <p data-testid="channel-create-help">When created, {{ channelCreatedText }}.</p>
         @if (channelCreated) {
@@ -71,12 +71,12 @@ function registerChannelMocks(api: ApiClient): void {
         }
       </section>
 
-      <section>
+      <section class="card">
         <h2>Your channels</h2>
         <ul data-testid="channel-list">
           @for (c of channels; track c.id) {
             <li>
-              <button type="button" (click)="selectChannel(c)" [attr.aria-pressed]="selected?.id === c.id">{{ c.name }}</button>
+              <button class="btn" type="button" (click)="selectChannel(c)" [attr.aria-pressed]="selected?.id === c.id">{{ c.name }}</button>
             </li>
           } @empty {
             <li data-testid="channel-list-empty">No channels yet.</li>
@@ -84,16 +84,16 @@ function registerChannelMocks(api: ApiClient): void {
         </ul>
       </section>
 
-      <section>
+      <section class="card">
         <h2>Messages</h2>
         <p data-testid="message-help">When you post a message, {{ messageCreatedText }}.</p>
         @if (selected) {
-          <form data-testid="message-form" (ngSubmit)="postMessage()">
+          <form class="form-grid" data-testid="message-form" (ngSubmit)="postMessage()">
             <label>
               Message to {{ selected.name }}
               <input name="body" type="text" required [(ngModel)]="newBody" />
             </label>
-            <button type="submit" [disabled]="busy || !newBody.trim()">Send</button>
+            <button class="btn btn-primary" type="submit" [disabled]="busy || !newBody.trim()">Send</button>
           </form>
           @if (messageCreated) {
             <p data-testid="message-created" role="status">Sent: {{ messageCreatedText }}.</p>

@@ -48,14 +48,37 @@ export const ADMIN_TAB_MAP: Record<string, string> = {
   'Users': 'users',
   'App Settings': 'app-settings',
 };
+export interface NavGroup {
+  label: string;
+  items: NavItem[];
+}
+
+const ICON_DOT = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/></svg>';
+
 // <<codegen:nav-items:start>>
-FIRM_NAV_ITEMS.push(
-  { path: '/vendor/profile', label: 'Vendor Profile', icon: '' },
-  { path: '/admin/customers', label: 'Customer Management', icon: '' },
-  { path: '/channels', label: 'Channels', icon: '' },
-  { path: '/orders', label: 'Orders', icon: '' },
-  { path: '/invoices', label: 'Invoices', icon: '' },
-  { path: '/settings/notifications', label: 'Notification Settings', icon: '' },
-  { path: '/admin/audit-log', label: 'Audit Log', icon: '' },
-);
+/** Story feature pages, grouped by audience (Vendor, Customer, Admin). */
+export const NAV_GROUPS: NavGroup[] = [
+  {
+    label: 'Vendor',
+    items: [
+      { path: '/vendor/profile', label: 'Vendor Profile', icon: ICON_DOT },
+      { path: '/channels', label: 'Channels', icon: ICON_DOT },
+      { path: '/invoices', label: 'Invoices', icon: ICON_DOT },
+      { path: '/settings/notifications', label: 'Notification Settings', icon: ICON_DOT },
+    ],
+  },
+  {
+    label: 'Customer',
+    items: [
+      { path: '/orders', label: 'Orders', icon: ICON_DOT },
+    ],
+  },
+  {
+    label: 'Admin',
+    items: [
+      { path: '/admin/customers', label: 'Customer Management', icon: ICON_DOT },
+      { path: '/admin/audit-log', label: 'Audit Log', icon: ICON_DOT },
+    ],
+  },
+];
 // <<codegen:nav-items:end>>

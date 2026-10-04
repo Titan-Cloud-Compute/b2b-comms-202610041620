@@ -14,13 +14,13 @@ export interface ConfirmOrderRequest { estimatedDelivery: string; }
   standalone: true,
   imports: [FormsModule],
   template: `
-    <div data-testid="orders-screen">
-      <h1>Orders</h1>
+    <div class="page" data-testid="orders-screen">
+      <h1 class="page-title">Orders</h1>
 
-      <section>
+      <section class="card">
         <h2>Place a purchase order</h2>
         <p data-testid="order-create-caption">the order is stored with status "pending" and returns 201 with the created Order record</p>
-        <form data-testid="order-form" (ngSubmit)="submit()">
+        <form class="form-grid" data-testid="order-form" (ngSubmit)="submit()">
           <label>Vendor ID
             <input name="vendorId" type="text" [(ngModel)]="vendorId" required />
           </label>
@@ -33,7 +33,7 @@ export interface ConfirmOrderRequest { estimatedDelivery: string; }
           <label>Unit price
             <input name="unitPrice" type="number" min="0" step="0.01" [(ngModel)]="unitPrice" required />
           </label>
-          <button type="submit" data-testid="order-submit" [disabled]="submitting">Submit purchase order</button>
+          <button class="btn btn-primary" type="submit" data-testid="order-submit" [disabled]="submitting">Submit purchase order</button>
         </form>
         @if (createError) {
           <p data-testid="order-create-error" role="alert">{{ createError }}</p>
@@ -43,7 +43,7 @@ export interface ConfirmOrderRequest { estimatedDelivery: string; }
         }
       </section>
 
-      <section>
+      <section class="card">
         <h2>Orders</h2>
         <p data-testid="order-confirm-caption">the order is updated to status "confirmed" and displays to the customer as confirmed</p>
         <ul data-testid="orders-list">
@@ -54,7 +54,7 @@ export interface ConfirmOrderRequest { estimatedDelivery: string; }
                 <label>Estimated delivery
                   <input type="date" [name]="'eta-' + o.id" [(ngModel)]="eta[o.id]" />
                 </label>
-                <button type="button" data-testid="order-confirm" [disabled]="confirming === o.id" (click)="confirm(o)">Confirm</button>
+                <button class="btn" type="button" data-testid="order-confirm" [disabled]="confirming === o.id" (click)="confirm(o)">Confirm</button>
               }
             </li>
           } @empty {

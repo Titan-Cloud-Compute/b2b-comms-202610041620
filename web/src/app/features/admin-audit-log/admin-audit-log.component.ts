@@ -22,8 +22,8 @@ export interface CreateAuditEntryRequest {
   standalone: true,
   imports: [DatePipe, FormsModule],
   template: `
-    <div data-testid="admin-audit-log-screen">
-      <h1>Audit Log</h1>
+    <div class="page" data-testid="admin-audit-log-screen">
+      <h1 class="page-title">Audit Log</h1>
       <p data-testid="audit-log-list-caption">
         Scenario: a list of AuditEntry records is displayed in chronological order returns 200
       </p>
@@ -35,7 +35,7 @@ export interface CreateAuditEntryRequest {
         <p role="alert" data-testid="audit-log-error">{{ error() }}</p>
       }
 
-      <form data-testid="audit-log-form" (ngSubmit)="record()">
+      <form class="card form-grid" data-testid="audit-log-form" (ngSubmit)="record()">
         <label>
           Action
           <input name="action" data-testid="audit-log-action-input" [(ngModel)]="newAction" required />
@@ -44,14 +44,14 @@ export interface CreateAuditEntryRequest {
           User ID
           <input name="userId" data-testid="audit-log-user-input" [(ngModel)]="newUserId" required />
         </label>
-        <button type="submit" data-testid="audit-log-record-button" [disabled]="saving()">Record entry</button>
+        <button class="btn btn-primary" type="submit" data-testid="audit-log-record-button" [disabled]="saving()">Record entry</button>
       </form>
       @if (lastCreated()) {
         <p data-testid="audit-log-created">Recorded "{{ lastCreated()!.action }}" ({{ lastCreated()!.id }})</p>
       }
 
       @if (entries().length > 0) {
-        <table data-testid="audit-log-table">
+        <table class="data-table" data-testid="audit-log-table">
           <thead>
             <tr><th>ID</th><th>Action</th><th>User</th><th>Time</th></tr>
           </thead>

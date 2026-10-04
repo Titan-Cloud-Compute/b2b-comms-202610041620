@@ -4,7 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { SafeHtmlPipe } from '../safe-html.pipe';
 import { AuthApi } from '../api/auth-api.service';
-import { FIRM_NAV_ITEMS, ADMIN_NAV_ITEMS, SHARED_NAV_ITEMS, ADMIN_TAB_MAP } from './nav-items';
+import { FIRM_NAV_ITEMS, ADMIN_NAV_ITEMS, SHARED_NAV_ITEMS, ADMIN_TAB_MAP, NAV_GROUPS } from './nav-items';
 import { SIDEBAR_TEMPLATE } from './sidebar.template';
 
 @Component({
@@ -385,6 +385,8 @@ export class SidebarComponent {
   readonly adminNavItems = ADMIN_NAV_ITEMS;
   // Rendered for every role (see SHARED_NAV_ITEMS) — outside the role branches.
   readonly sharedNavItems = SHARED_NAV_ITEMS;
+  // Story feature pages grouped as Vendor / Customer / Admin — shown to every role.
+  readonly navGroups = NAV_GROUPS;
 
   auth = inject(AuthService);
   private router = inject(Router);

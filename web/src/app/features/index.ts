@@ -4,8 +4,9 @@ import { Routes } from '@angular/router';
  * Feature route registry.
  *
  * Each story appends its Angular routes to this array.
- * app.routes.ts spreads FEATURE_ROUTES before the wildcard catch-all so new
- * feature routes are picked up automatically.
+ * app.routes.ts spreads FEATURE_ROUTES into the children of the shared
+ * LayoutComponent route, so feature pages render inside the sidebar/top-bar
+ * shell and are picked up automatically.
  *
  * Example (in features/my-feature/my-feature.routes.ts):
  *

@@ -16,13 +16,13 @@ const PREFS_PATH = '/api/notifications/preferences';
   standalone: true,
   imports: [NgIf],
   template: `
-    <div data-testid="settings-notifications-screen">
-      <h1>Notification Settings</h1>
+    <div class="page" data-testid="settings-notifications-screen">
+      <h1 class="page-title">Notification Settings</h1>
       <p>
         Choose which alerts you receive. When you save, the preferences are updated and returns 200 with the stored NotificationPreference record.
         Turning both off means the preferences are updated with both alert fields stored as false.
       </p>
-      <form (submit)="save($event)">
+      <form class="card form-grid" (submit)="save($event)">
         <label>
           <input
             type="checkbox"
@@ -43,7 +43,7 @@ const PREFS_PATH = '/api/notifications/preferences';
           />
           Message alerts
         </label>
-        <button type="submit" data-testid="pref-save" [disabled]="saving">Save</button>
+        <button class="btn btn-primary" type="submit" data-testid="pref-save" [disabled]="saving">Save</button>
       </form>
       <p *ngIf="saved" data-testid="pref-status">
         Saved: order alerts {{ saved.orderAlerts ? 'on' : 'off' }}, message alerts {{ saved.messageAlerts ? 'on' : 'off' }}.

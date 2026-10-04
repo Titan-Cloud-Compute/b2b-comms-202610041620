@@ -54,6 +54,21 @@ export const SIDEBAR_TEMPLATE = `
           }
         }
 
+        @for (group of navGroups; track group.label) {
+          <div class="nav-group-label">{{ group.label }}</div>
+          @for (item of group.items; track item.path) {
+            <a
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              class="nav-item"
+              (click)="navClick.emit()"
+            >
+              <span class="nav-icon" [innerHTML]="item.icon | safeHtml"></span>
+              <span class="nav-label">{{ item.label }}</span>
+            </a>
+          }
+        }
+
         <!-- Role-agnostic entries (saved searches): every signed-in user owns
              their own saved searches, so this group renders outside both role
              branches above. -->

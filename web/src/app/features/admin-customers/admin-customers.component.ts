@@ -21,16 +21,16 @@ const INVITE_PATH = '/api/admin/customers/invite';
   standalone: true,
   imports: [FormsModule],
   template: `
-    <div data-testid="admin-customers-screen">
-      <h1>Customer Management</h1>
+    <div class="page" data-testid="admin-customers-screen">
+      <h1 class="page-title">Customer Management</h1>
 
-      <section>
+      <section class="card">
         <h2>Invite a customer</h2>
         <ul>
           <li>When you invite a new email, a Customer record is created and returns 201 with invitationSent true.</li>
           <li>If the email was already invited, the response returns 409 error indicating the customer already exists.</li>
         </ul>
-        <form (ngSubmit)="invite()">
+        <form class="form-grid" (ngSubmit)="invite()">
           <label for="invite-email">Customer email</label>
           <input
             id="invite-email"
@@ -40,7 +40,7 @@ const INVITE_PATH = '/api/admin/customers/invite';
             required
             [(ngModel)]="email"
           />
-          <button type="submit" data-testid="invite-submit" [disabled]="busy || !email">
+          <button class="btn btn-primary" type="submit" data-testid="invite-submit" [disabled]="busy || !email">
             Send invitation
           </button>
         </form>
@@ -52,7 +52,7 @@ const INVITE_PATH = '/api/admin/customers/invite';
         }
       </section>
 
-      <section>
+      <section class="card">
         <h2>Customers</h2>
         @if (customers.length === 0) {
           <p data-testid="customers-empty">No customers invited yet.</p>

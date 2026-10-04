@@ -22,13 +22,13 @@ const DOCUMENT_STORED_MSG = 'the document is stored with status "pending" and di
   standalone: true,
   imports: [ReactiveFormsModule],
   template: `
-    <div data-testid="vendor-profile-screen">
-      <h1>Vendor Profile</h1>
+    <div class="page" data-testid="vendor-profile-screen">
+      <h1 class="page-title">Vendor Profile</h1>
 
-      <section>
+      <section class="card">
         <h2>Company profile</h2>
         <p data-testid="vendor-profile-hint">When you save, {{ profileMsg }}.</p>
-        <form data-testid="vendor-profile-form" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+        <form class="form-grid" data-testid="vendor-profile-form" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
           <label>
             Company name
             <input name="companyName" formControlName="companyName" type="text" required />
@@ -37,7 +37,7 @@ const DOCUMENT_STORED_MSG = 'the document is stored with status "pending" and di
             Contact email
             <input name="contactEmail" formControlName="contactEmail" type="email" required />
           </label>
-          <button type="submit" [disabled]="profileForm.invalid || savingProfile">Save profile</button>
+          <button class="btn btn-primary" type="submit" [disabled]="profileForm.invalid || savingProfile">Save profile</button>
         </form>
         @if (profile) {
           <div data-testid="vendor-profile-result">
@@ -50,15 +50,15 @@ const DOCUMENT_STORED_MSG = 'the document is stored with status "pending" and di
         }
       </section>
 
-      <section>
+      <section class="card">
         <h2>Compliance documents</h2>
         <p data-testid="vendor-document-hint">When you upload, {{ documentMsg }}.</p>
-        <form data-testid="vendor-document-form" [formGroup]="documentForm" (ngSubmit)="uploadDocument()">
+        <form class="form-grid" data-testid="vendor-document-form" [formGroup]="documentForm" (ngSubmit)="uploadDocument()">
           <label>
             Filename
             <input name="filename" formControlName="filename" type="text" required />
           </label>
-          <button type="submit" [disabled]="documentForm.invalid || uploading">Upload document</button>
+          <button class="btn btn-primary" type="submit" [disabled]="documentForm.invalid || uploading">Upload document</button>
         </form>
         @if (documentError) {
           <p role="alert">{{ documentError }}</p>
