@@ -1,4 +1,10 @@
 // CustomerInvite DTOs
+import { IsEmail } from 'class-validator';
+
+export class InviteCustomerDto {
+  @IsEmail()
+  email!: string;
+}
 
 export interface PostApiAdminCustomersInviteRequestDto {
   email: string;
