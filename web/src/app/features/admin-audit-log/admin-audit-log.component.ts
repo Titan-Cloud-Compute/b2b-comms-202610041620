@@ -92,8 +92,8 @@ export class AdminAuditLogComponent implements OnInit {
     this.loading.set(true);
     this.error.set(null);
     try {
-      const rows = await this.api.get<AuditEntry[]>('admin/audit-log');
-      this.entries.set(sortChronological(Array.isArray(rows) ? rows : []));
+      const rows = await this.api.get<AuditEntry[] | { rows?: unknown[] }>('admin/audit-log');
+      this.entries.set(sortChronological(normalizeEntries(rows)));
     } catch {
       this.error.set('Could not load the audit log.');
     } finally {
@@ -122,6 +122,23 @@ export class AdminAuditLogComponent implements OnInit {
       this.saving.set(false);
     }
   }
+}
+
+/** Accept a bare AuditEntry[] or a paged `{ rows: [...] }` wrapper. */
+function normalizeEntries(payload: unknown): AuditEntry[] {
+  const list: unknown[] = Array.isArray(payload)
+    ? payload
+    : Array.isArray((payload as { rows?: unknown[] } | null)?.rows)
+      ? (payload as { rows: unknown[] }).rows
+      : [];
+  return list
+    .filter((r): r is Record<string, unknown> => !!r && typeof r === 'object')
+    .map((r) => ({
+      id: String(r['id'] ?? ''),
+      action: String(r['action'] ?? ''),
+      userId: (r['userId'] ?? r['actorUserId'] ?? undefined) as string | undefined,
+      createdAt: String(r['createdAt'] ?? ''),
+    }));
 }
 
 function sortChronological(rows: AuditEntry[]): AuditEntry[] {
